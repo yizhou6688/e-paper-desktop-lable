@@ -4,9 +4,6 @@
 
 > 本仓库目前主要是设备端工程和协议资料。Android 与 Windows 应用的源码、安装包及各自的构建说明未包含在当前仓库中；下文“二次开发”列出的是开发这两端应用时需要阅读的设备协议与需求文档。部分文档保留早期设计草案和历史验证记录，遇到不一致时请结合当前固件接口核对。
 
-![底座预览](3dmodels/底座预览图.jpg)
-![顶盖预览](3dmodels/顶盖预览图.jpg)
-
 ## 能做什么
 
 - **四色图片显示**：客户端将照片裁剪并缩放到 400 × 300，量化为黑、白、黄、红四种颜色，编码为 30,000 字节的 2bpp 画面，经 BLE 分包发送；设备完成校验后刷新。墨水屏断电仍能保持最后画面。
@@ -44,11 +41,9 @@ tools/         OTA 打包等辅助工具
 tests/         设备端协议和灯效测试
 ```
 
-## 二次开发：先读哪些文档
+## 二次开发：
 
 ### Android 应用
-
-建议按以下顺序阅读。文档路径均在 files/ 内：
 
 1. [ANDROID_APP_REQUIREMENTS.md](refer_doc/ANDROID_APP_REQUIREMENTS.md)：应用流程、NFC 唤起、BLE GATT、认证、图片处理、传输状态与错误处理的总入口。
 2. [IMAGE_TRANSFER_PROTOCOL.md](refer_doc/IMAGE_TRANSFER_PROTOCOL.md)：NDEF 格式、BLE 帧、HELLO/认证、2bpp 数据、分包 ACK、CRC/HMAC 和状态码。客户端与固件联调以此为基础。
@@ -60,7 +55,7 @@ tests/         设备端协议和灯效测试
 
 电脑端涉及两条通信路径，先确定要开发哪一项：
 
-| 功能 | files/ 中应读的文档 | 还应核对 |
+| 功能 | refer_doc/ 中应读的文档 | 还应核对 |
 | --- | --- | --- |
 | BLE 传图与设备控制 | [IMAGE_TRANSFER_PROTOCOL.md](refer_doc/IMAGE_TRANSFER_PROTOCOL.md)；日历功能参考 [ANDROID_CALENDAR_DEVELOPMENT.md](refer_doc/ANDROID_CALENDAR_DEVELOPMENT.md)，灯效参考 [ANDROID_LED_CONTROL.md](refer_doc/ANDROID_LED_CONTROL.md) | Android 专属的 NFC 唤起、系统日历、定位和权限部分需要替换为 Windows 实现；电脑端同样要满足设备认证与报文格式 |
 | BLE 固件升级 | [BLE_OTA_DESIGN.md](refer_doc/BLE_OTA_DESIGN.md) 和 [IMAGE_TRANSFER_PROTOCOL.md](refer_doc/IMAGE_TRANSFER_PROTOCOL.md) | BLE 断开重连、升级清单与 ACK/状态处理 |
@@ -70,8 +65,8 @@ tests/         设备端协议和灯效测试
 
 - 修改设备端协议或屏幕驱动：先读 [图片传输协议](refer_doc/IMAGE_TRANSFER_PROTOCOL.md)，再看 `Core/Src/image_transfer.c`、`Core/Src/gdem042f86.c`。
 - 修改 OTA：先读 [OTA 设计]（refer_doc/BLE_OTA_DESIGN.md)，再看 `Bootloader/` 和 `tools/package_ota.py`。
-- 修改灯效、按键或传感器：阅读 [LED_LOGIC.md](refer_doc/LED_LOGIC.md) 和 [ANDROID_LED_CONTROL.md](files/ANDROID_LED_CONTROL.md)，再看 `Core/Src/led_595.c`、`Core/Src/aht20.c`。
-- 修改硬件与外壳：参考 [原理图](refer_doc/SCH_Schematic3_2026-09-11.pdf)、[IOC](files/墨水屏项目.ioc)、[PCB 工程](pcbproject) 和 [外壳模型](3d外壳)。[HARDWARE_2026_09_11.md](refer_doc/HARDWARE_2026_09_11.md) 是历史适配记录，其中早期同步呼吸演示已由当前三模式逻辑替代。
+- 修改灯效、按键或传感器：阅读 [LED_LOGIC.md](refer_doc/LED_LOGIC.md) 和 [ANDROID_LED_CONTROL.md](refer_doc/ANDROID_LED_CONTROL.md)，再看 `Core/Src/led_595.c`、`Core/Src/aht20.c`。
+- 修改硬件与外壳：参考 [原理图](refer_doc/SCH_Schematic3_2026-09-11.pdf)、[IOC](refer_doc/墨水屏项目.ioc)、[PCB 工程](pcbproject) 和 [外壳模型](3d外壳)。[HARDWARE_2026_09_11.md](refer_doc/HARDWARE_2026_09_11.md) 是历史适配记录，其中早期同步呼吸演示已由当前三模式逻辑替代。
 
 ## 编译与烧录设备固件
 

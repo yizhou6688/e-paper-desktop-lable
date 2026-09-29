@@ -6,8 +6,6 @@
 
 https://github.com/user-attachments/assets/cc96b537-707a-45b4-96a5-fb6d7e83d982
 
-[下载 e-label-intro 介绍视频](refer_doc/e-label-intro.mp4)
-
 ## 主要功能
 
 - **四色传图**：将图片转换为黑、白、黄、红四色，通过 BLE 传输并刷新。

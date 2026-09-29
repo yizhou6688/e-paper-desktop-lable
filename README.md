@@ -4,7 +4,9 @@
 
 ## 演示视频
 
-[观看或下载 e-label-intro 介绍视频](refer_doc/e-label-intro.mp4)
+https://github.com/user-attachments/assets/cc96b537-707a-45b4-96a5-fb6d7e83d982
+
+[下载 e-label-intro 介绍视频](refer_doc/e-label-intro.mp4)
 
 ## 主要功能
 
